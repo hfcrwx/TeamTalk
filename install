@@ -1,0 +1,45 @@
+gcc gcc-c++
+kernel-devel kernel-devel-3.10.0-862.el7.x86_64
+
+cmake
+git
+epel
+kdevelop
+
+teamtalk
+
+cd /root/TeamTalk/server/src
+./make_protobuf.sh
+./make_hiredis.sh
+./make_mariadb.sh
+./make_log4cxx.sh
+
+cd /root/TeamTalk/pb
+export PATH=/root/TeamTalk/server/src/protobuf/bin:$PATH
+./create.sh
+./sync.sh
+
+cd /root/TeamTalk/server/src
+./build.sh version 1
+cp ../im-server-1.tar.gz /root/TeamTalk/auto_setup/im_server
+
+cd /root/TeamTalk
+mv php tt
+zip -r tt tt.zip
+mv tt.zip /root/TeamTalk/auto_setup/im_web
+mv tt php
+
+cd /root/TeamTalk/auto_setup
+./setup.sh check
+./setup.sh install
+
+Enter current password for root (enter for none):
+Set root password? [Y/n] y
+New password:12345
+Re-enter new password:12345
+
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
+setenforce 0
+
