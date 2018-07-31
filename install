@@ -25,7 +25,7 @@ cp ../im-server-1.tar.gz /root/TeamTalk/auto_setup/im_server
 
 cd /root/TeamTalk
 mv php tt
-zip -r tt tt.zip
+zip -r tt.zip tt
 mv tt.zip /root/TeamTalk/auto_setup/im_web
 mv tt php
 
