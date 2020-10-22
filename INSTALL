@@ -3,7 +3,7 @@ kernel-devel kernel-devel-3.10.0-862.el7.x86_64
 
 cmake
 git
-epel
+epel-release
 kdevelop
 
 teamtalk
@@ -43,3 +43,38 @@ systemctl disable firewalld.service
 sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 setenforce 0
 
+192.168.1.150:80
+admin
+admin
+组织架构
+用户管理
+
+/usr/local/php5/sbin/php-fpm
+service nginx start
+service mariadb start
+/usr/local/bin/redis-server /usr/local/etc/redis.conf
+
+cd /root/TeamTalk/auto_setup/im_server/im-server-1
+./restart.sh login_server
+./restart.sh route_server
+./restart.sh msg_server
+./restart.sh file_server
+./restart.sh msfs
+./restart.sh http_msg_server
+./restart.sh push_server
+./restart.sh db_proxy_server
+
+client
+vs2013 以管理员身份运行
+
+teamtalk.cpp
+	//if (_IsHaveInstance())
+	//{
+	//	LOG__(ERR, _T("Had one instance,this will exit"));
+	//	HWND hwndMain = FindWindow(_T("TeamTalkMainDialog"), NULL);
+	//	if (hwndMain)
+	//	{
+	//		::SendMessage(hwndMain, WM_START_MOGUTALKINSTANCE, NULL, NULL);
+	//	}
+	//	return FALSE;
+	//}
